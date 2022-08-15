@@ -1,0 +1,8 @@
+{
+  "pages": {
+    "*": ["common", "routes"]
+  },
+  "defaultLocale": "en",
+  "locales": ["en"],
+  "localeDetection": false
+}

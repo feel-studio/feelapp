@@ -1,0 +1,119 @@
+/* @font-face {
+  font-family: "NeueHelvetica";
+  src: url("/fonts/0666871b-2408-4418-9955-0435f2668a1a.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+} */
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-variant-ligatures: common-ligatures contextual;
+  font-feature-settings: "kern", "liga", "clig", "calt";
+  font-kerning: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+:root {
+  /* Defines Root Rem, use as Base Unit  */
+  --vpMin: 375;
+  --vpMax: 1440;
+  --min: 18;
+  --max: 18;
+  --rem: calc(
+    (var(--min) * 1px) + (var(--max) - var(--min)) *
+      (100vw - (var(--vpMin) * 1px)) / (var(--vpMax) - var(--vpMin))
+  );
+
+  /* Normal */
+  --fSMin: 16;
+  --lHMin: 18;
+
+  --fSMax: 16;
+  --lHMax: 18;
+
+  --lSp: 0;
+
+  --fS: calc(
+    (var(--fSMin) * 1px) + (var(--fSMax) - var(--fSMin)) *
+      (100vw - (var(--vpMin) * 1px)) / (var(--vpMax) - var(--vpMin))
+  );
+  --lH: calc(
+    (var(--lHMin) * 1px) + (var(--lHMax) - var(--lHMin)) *
+      (100vw - (var(--vpMin) * 1px)) / (var(--vpMax) - var(--vpMin))
+  );
+  --lS: calc((var(--lSp, 0) / 1000) * 1em);
+
+  /* Small */
+  --fSMinS: 11;
+  --lHMinS: 16.4;
+
+  --fSMaxS: 11;
+  --lHMaxS: 16.4;
+
+  --lSpS: 10;
+
+  --fSS: calc(
+    (var(--fSMinS) * 1px) + (var(--fSMaxS) - var(--fSMinS)) *
+      (100vw - (var(--vpMin) * 1px)) / (var(--vpMax) - var(--vpMin))
+  );
+  --lHS: calc(
+    (var(--lHMinS) * 1px) + (var(--lHMaxS) - var(--lHMinS)) *
+      (100vw - (var(--vpMin) * 1px)) / (var(--vpMax) - var(--vpMin))
+  );
+  --lSS: calc((var(--lSpS, 0) / 1000) * 1em);
+}
+
+/* Lock Values to linear growth when reaching final max. Viewport */
+
+@media screen and (min-width: 1440px) {
+  :root {
+    /* Defines Root Rem, use as Base Unit  */
+    --vpMin: 1440;
+    --vpMax: 1920;
+    --min: 18;
+    --max: 18;
+
+    /* Normal */
+    --fSMin: 16;
+    --lHMin: 18;
+
+    --fSMax: 18;
+    --lHMax: 20;
+
+    /* Small */
+    --fSMinS: 11;
+    --lHMinS: 16.4;
+
+    --fSMaxS: 11;
+    --lHMaxS: 14;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  :root {
+    --rem: calc(var(--fSMax) / 1920 * 100vw);
+
+    --fS: calc(var(--fSMax) / 1920 * 100vw);
+    --lH: calc(var(--lHMax) / 1920 * 100vw);
+
+    --fSS: calc(var(--fSMaxS) / 1920 * 100vw);
+    --lHS: calc(var(--lHMaxS) / 1920 * 100vw);
+  }
+}
+
+html {
+  font-size: var(--rem);
+}
+
+body {
+  font-size: var(--fS);
+  line-height: var(--lH);
+  letter-spacing: var(--lS);
+}
+
+.type--s {
+  font-size: var(--fSS);
+  line-height: var(--lHS);
+  letter-spacing: var(--lSS);
+}

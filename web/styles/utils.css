@@ -1,0 +1,19 @@
+.utils--linebreak p + p:not(:empty)::before {
+  content: "\A";
+  white-space: pre-wrap;
+}
+
+.utils--highlight-links a:not([href^="mailto:"]):not([href^="tel:"]) {
+  display: inline;
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.utils--visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
