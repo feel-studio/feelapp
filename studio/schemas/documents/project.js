@@ -74,12 +74,6 @@ export default {
       const icon =
           status === "visible" ? "" : status === "linkOnly" ? "🔗" : "💾",
         mediaCollection = Object.values(selection);
-      console.log(
-        {
-          mediaCollection,
-        },
-        mediaCollection.find((m) => m.status === "featured")
-      );
 
       return {
         title: [icon, title].join(" "),

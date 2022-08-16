@@ -7,8 +7,6 @@ export default function Page404(props) {
   const { t } = useTranslation("common");
   const router = useRouter();
 
-  console.log(router);
-
   return (
     <>
       <Route className="Route404">

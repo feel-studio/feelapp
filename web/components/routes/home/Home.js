@@ -3,8 +3,6 @@ import Link from "next/link";
 import {} from "./";
 
 const Home = ({ projects }) => {
-  console.log({ projects });
-
   return (
     <>
       <main className="Home">
@@ -12,7 +10,7 @@ const Home = ({ projects }) => {
           return content
             .filter(({ status }) => !!status)
             .map((media) => (
-              <Link href={"/project/" + slug?.current}>
+              <Link key={media?._key} href={"/project/" + slug?.current}>
                 <a>
                   <Media media={media} />
                 </a>

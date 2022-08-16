@@ -12,8 +12,6 @@ const Image = ({ media, className, ratio: ratioCustom, children }) => {
   const { alt, image, blur } = media || {},
     asset = image?.asset;
 
-  console.log("RENDER");
-
   const memoizedAsset = useMemo(() => {
     if (!asset) return null;
     const [assetType, id, dimensions, fileType] = asset?._ref.split("-"),

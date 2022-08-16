@@ -2,7 +2,6 @@ import Content from "@/components/content/Content";
 import { Media } from "@/components/media";
 
 const Project = ({ project }) => {
-  console.log({ project });
   const { title, content, information } = project?.[0] || {};
 
   return (
