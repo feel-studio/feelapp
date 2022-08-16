@@ -27,6 +27,7 @@ export default function Page404(props) {
         .Route404 {
           width: 100vw;
           height: 100vh;
+          height: 100svh;
           margin: 0 auto;
           display: flex;
           text-align: center;

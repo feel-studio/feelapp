@@ -20,13 +20,19 @@ const Project = ({ project }) => {
       <style jsx global>{`
         .RouteProject {
           width: 100vw;
-          height: 100vh;
-          overflow-y: scroll;
-          scroll-snap-type: y proximity;
+        }
+
+        @media (hover: hover) {
+          .RouteProject {
+            height: 100vh;
+            overflow-y: scroll;
+            scroll-snap-type: y proximity;
+          }
         }
 
         .ProjectMedia:not(:first-child) {
           margin-top: calc(25vh - 2rem);
+          margin-top: calc(25svh - 2rem);
         }
 
         .ProjectMedia,
@@ -58,11 +64,13 @@ const Project = ({ project }) => {
 
         .ProjectDescription {
           height: 100vh;
+          height: 100svh;
           flex-direction: column;
           text-align: center;
           text-transform: uppercase;
           scroll-snap-align: center;
           margin-bottom: -50vh;
+          margin-bottom: -50svh;
         }
       `}</style>
     </>
