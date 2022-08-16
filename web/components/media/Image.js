@@ -41,10 +41,20 @@ const Image = ({ media, className, ratio: ratioCustom, children }) => {
         .filter((n) => n)
         .join(", ");
 
-    return { ratio, orientation, id, height, width, srcset, alt, srcLQ };
+    return {
+      ratio,
+      orientation,
+      id,
+      height,
+      width,
+      srcset,
+      alt,
+      srcLQ,
+      fileType,
+    };
   }, [asset, alt, blur, ratioCustom]);
 
-  const { ratio, orientation, id, height, width, srcset, srcLQ } =
+  const { ratio, orientation, id, height, width, srcset, srcLQ, fileType } =
     memoizedAsset || {};
 
   return !memoizedAsset ? null : (
@@ -59,7 +69,11 @@ const Image = ({ media, className, ratio: ratioCustom, children }) => {
       >
         <img
           key={id}
-          src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+          src={
+            fileType === "svg"
+              ? getImgUrl(asset).url()
+              : "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
+          }
           width={width}
           height={height}
           data-srcset={srcset}

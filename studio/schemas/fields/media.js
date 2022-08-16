@@ -4,6 +4,7 @@ export default {
   name: "media",
   title: "Media",
   type: "object",
+  initialValue: { status: "visible" },
   fields: [
     {
       title: "Select media type",
@@ -25,7 +26,6 @@ export default {
       title: "Image",
       type: "image",
       options: {
-        hotspot: true,
         metadata: ["lqip", "palette"],
       },
       hidden: ({ parent }) => parent?.mediaType !== "image",
@@ -41,6 +41,21 @@ export default {
       name: "showAttributes",
       type: "boolean",
       hidden: ({ parent }) => !parent,
+    },
+    {
+      title: "Status",
+      name: "status",
+      type: "string",
+      options: {
+        list: [
+          { title: "Featured", value: "featured" },
+          { title: "Visible", value: "visible" },
+          { title: "Hidden", value: "hidden" },
+        ],
+        layout: "radio",
+        direction: "horizontal",
+      },
+      hidden: ({ parent }) => !parent?.showAttributes,
     },
     {
       title: "Video Controls enabled?",
@@ -60,13 +75,6 @@ export default {
         parent?.mediaType !== "image" || !parent?.showAttributes,
     },
     {
-      name: "blur",
-      type: "image",
-      title: "Blur",
-      description: "Decorative effect (optional)",
-      hidden: ({ parent }) => !parent?.showAttributes,
-    },
-    {
       name: "caption",
       type: "contentText",
       title: "Caption",
@@ -78,8 +86,11 @@ export default {
       playbackId: "video.asset.playbackId",
       image: "image",
       mediaType: "mediaType",
+      status: "status",
     },
-    prepare({ playbackId, image, mediaType }) {
+    prepare({ playbackId, image, status, mediaType }) {
+      const icon =
+        status === "visible" ? "👀" : status === "linkOnly" ? "🔗" : "💾";
       return {
         media: mediaType
           ? mediaType !== "image"

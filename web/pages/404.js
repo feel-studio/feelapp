@@ -1,9 +1,13 @@
 import useTranslation from "next-translate/useTranslation";
 import Link from "next/link";
 import { Route } from "@/components/_app";
+import { useRouter } from "next/router";
 
 export default function Page404(props) {
   const { t } = useTranslation("common");
+  const router = useRouter();
+
+  console.log(router);
 
   return (
     <>

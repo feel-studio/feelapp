@@ -1,24 +1,25 @@
 import { renderEmoji } from "../../utils";
 
-const title = "Legal",
+const title = "Info",
   type = "document",
-  icon = renderEmoji("⚖️"),
+  icon = renderEmoji("ℹ️"),
   name = type + title,
-  previewPath = "/legal";
+  previewPath = "/info";
 
 export default {
   fields: [
     {
-      title: "Disclaimer",
-      name: "disclaimer",
+      title: "Information",
+      name: "information",
       type: "contentText",
       validation: (Rule) => Rule.required(),
     },
+    { title: "Links", name: "links", type: "array", of: [{ type: "link" }] },
+    { title: "Logo", name: "logo", type: "image" },
     {
-      title: "Privacy Policy",
-      name: "privacyPolicy",
-      type: "contentText",
-      validation: (Rule) => Rule.required(),
+      title: "Content",
+      name: "content",
+      type: "mediaCollection",
     },
   ],
   preview: {

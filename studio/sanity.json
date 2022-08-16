@@ -1,15 +1,21 @@
 {
   "root": true,
   "api": {
-    "projectId": "5gsplppc",
+    "projectId": "abiax3pq",
     "dataset": "production"
   },
   "project": {
-    "name": "Sanity Skeleton",
+    "name": "FEEL",
     "remoteUrl": "http://localhost:3000",
     "localUrl": "http://localhost:3000",
-    "previewSecret": "",
-    "locales": [{ "title": "English", "code": "en", "emoji": "🇬🇧" }]
+    "previewSecret": "X22RPMMCIYT8H85IVCNF",
+    "locales": [
+      {
+        "title": "English",
+        "code": "en",
+        "emoji": "🇬🇧"
+      }
+    ]
   },
   "plugins": [
     "@sanity/base",

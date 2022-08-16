@@ -5,9 +5,9 @@ import { getImgUrl } from "@/lib/sanity";
 
 import config from "@config";
 
-import { Nav, Footer } from ".";
+import { Footer } from ".";
 
-export default function Route({ seo, title, className, children, i18n }) {
+export default function Route({ seo, title, className, children, info }) {
   const { index = true, follow = true, description, preview } = seo || {};
 
   return (
@@ -33,23 +33,20 @@ export default function Route({ seo, title, className, children, i18n }) {
               ],
         }}
       />
-      <Nav i18n={i18n} />
       <motion.div
         className={["Route", className].join(" ")}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
-        style={{ background: "white", height: "100%" }}
+        style={{ background: "white" }}
       >
         {children}
+        <Footer info={info} />
       </motion.div>
-      <Footer />
 
       <style jsx global>{`
         .Route {
-          flex-grow: 1;
-          height: 100%;
         }
       `}</style>
     </>

@@ -17,7 +17,7 @@ body {
 :root {
   /* Defines Root Rem, use as Base Unit  */
   --vpMin: 375;
-  --vpMax: 1440;
+  --vpMax: 1920;
   --min: 18;
   --max: 18;
   --rem: calc(
@@ -26,11 +26,11 @@ body {
   );
 
   /* Normal */
-  --fSMin: 16;
-  --lHMin: 18;
+  --fSMin: 12;
+  --lHMin: 13.3;
 
-  --fSMax: 16;
-  --lHMax: 18;
+  --fSMax: 12;
+  --lHMax: 12;
 
   --lSp: 0;
 
@@ -43,52 +43,29 @@ body {
       (100vw - (var(--vpMin) * 1px)) / (var(--vpMax) - var(--vpMin))
   );
   --lS: calc((var(--lSp, 0) / 1000) * 1em);
-
-  /* Small */
-  --fSMinS: 11;
-  --lHMinS: 16.4;
-
-  --fSMaxS: 11;
-  --lHMaxS: 16.4;
-
-  --lSpS: 10;
-
-  --fSS: calc(
-    (var(--fSMinS) * 1px) + (var(--fSMaxS) - var(--fSMinS)) *
-      (100vw - (var(--vpMin) * 1px)) / (var(--vpMax) - var(--vpMin))
-  );
-  --lHS: calc(
-    (var(--lHMinS) * 1px) + (var(--lHMaxS) - var(--lHMinS)) *
-      (100vw - (var(--vpMin) * 1px)) / (var(--vpMax) - var(--vpMin))
-  );
-  --lSS: calc((var(--lSpS, 0) / 1000) * 1em);
 }
 
 /* Lock Values to linear growth when reaching final max. Viewport */
 
-@media screen and (min-width: 1440px) {
+/* @media screen and (min-width: 1440px) {
   :root {
-    /* Defines Root Rem, use as Base Unit  */
+    /* Defines Root Rem, use as Base Unit  
     --vpMin: 1440;
     --vpMax: 1920;
     --min: 18;
     --max: 18;
 
-    /* Normal */
+    /* Normal 
     --fSMin: 16;
     --lHMin: 18;
 
     --fSMax: 18;
     --lHMax: 20;
 
-    /* Small */
-    --fSMinS: 11;
-    --lHMinS: 16.4;
-
-    --fSMaxS: 11;
-    --lHMaxS: 14;
+   
   }
 }
+*/
 
 @media screen and (min-width: 1920px) {
   :root {
@@ -96,9 +73,6 @@ body {
 
     --fS: calc(var(--fSMax) / 1920 * 100vw);
     --lH: calc(var(--lHMax) / 1920 * 100vw);
-
-    --fSS: calc(var(--fSMaxS) / 1920 * 100vw);
-    --lHS: calc(var(--lHMaxS) / 1920 * 100vw);
   }
 }
 

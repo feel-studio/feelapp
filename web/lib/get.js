@@ -103,7 +103,7 @@ export const getPaths = async (_type, key, dir) => {
 
   const paths = docs?.map(({ slug, i18n }) => ({
     params: { slug: slug?.current },
-    locale: i18n.locale,
+    locale: i18n?.locale,
   }));
 
   return {
