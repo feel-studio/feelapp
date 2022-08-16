@@ -25,6 +25,10 @@ const Project = ({ project }) => {
           scroll-snap-type: y proximity;
         }
 
+        .ProjectMedia:not(:first-child) {
+          margin-top: calc(25vh - 2rem);
+        }
+
         .ProjectMedia,
         .ProjectDescription {
           width: 100vmin;
@@ -35,6 +39,7 @@ const Project = ({ project }) => {
           padding: 1rem;
           margin: 0 auto;
           scroll-snap-align: center;
+          position: relative;
         }
 
         .ProjectMedia .Media {

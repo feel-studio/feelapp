@@ -10,25 +10,25 @@ export default function Page404(props) {
   return (
     <>
       <Route className="Route404">
-        <div>
-          {t("404-headline")} ({t("404-error")}).
+        <article>
+          <div>
+            {t("404-headline")} ({t("404-error")}).
+            <br />
+            {t("404-error-notice")}
+          </div>
           <br />
-          {t("404-error-notice")}
-        </div>
-        <br />
-        <Link href="/">
-          <a>{t("404-return")}</a>
-        </Link>
+          <Link href="/">
+            <a>{t("404-return")}</a>
+          </Link>
+        </article>
       </Route>
 
       <style jsx global>{`
         .Route404 {
           width: 100vw;
-          max-width: 100vmin;
+          height: 100vh;
           margin: 0 auto;
           display: flex;
-          align-items: center;
-          justify-content: center;
           text-align: center;
           flex-wrap: wrap;
           flex-direction: column;
@@ -38,6 +38,11 @@ export default function Page404(props) {
         .Route404 a {
           color: var(--gray);
           transition: color 0.233s;
+        }
+
+        .Route404 article {
+          flex-grow: 1;
+          padding: calc(var(--lH) * 5) 1rem;
         }
 
         @media (hover: hover) {

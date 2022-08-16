@@ -28,35 +28,33 @@ const Footer = ({ info }) => {
           </div>
         </section>
         <div className="legal">
-          <span>
-            {`© ${createdAt}${
-              new Date().getFullYear() > createdAt
-                ? " – " + new Date().getFullYear().toString().substr(-2)
-                : ""
-            }`}{" "}
-            Feel Enterprises LLC
-          </span>
-          <Link href="/legal">
-            <a>Legal Notice</a>
-          </Link>
+          <span>{`© ${new Date().getFullYear()}`} Feel Enterprises LLC</span>
         </div>
       </footer>
       <style jsx global>{`
         .Footer {
           display: flex;
           flex-direction: column;
+          padding: 1rem;
+          min-height: 50vh;
+          text-transform: uppercase;
+        }
+
+        .RouteProject .Footer {
           min-height: 100vh;
           scroll-snap-align: bottom;
           padding: 50vh 1rem 1rem 1rem;
-          text-transform: uppercase;
         }
 
         .Footer section {
           flex-grow: 1;
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: repeat(
+            auto-fill,
+            minmax(calc(264px + 2rem), 1fr)
+          );
           align-items: center;
-          width: calc(100vmin - 2rem);
+          width: 100%;
           margin: 0 auto;
           gap: 1rem;
         }
@@ -87,9 +85,19 @@ const Footer = ({ info }) => {
         .Footer :global(a) {
         }
 
-        @media (min-aspect-ratio: 1 / 1) {
+        @media (max-width: 667px) {
+          .Footer {
+            justify-content: flex-end;
+            gap: calc(var(--lH) * 5);
+          }
+
+          .Footer section {
+            flex-grow: unset;
+            display: block;
+          }
+
           .Footer .logo {
-            justify-content: flex-start;
+            margin-bottom: calc(var(--lH) * 5);
           }
         }
 

@@ -9,10 +9,10 @@ export default {
         title: "Netlify deploys",
         sites: [
           {
-            title: "🚧 Staging [] ",
-            apiId: "",
-            buildHookId: "",
-            name: "",
+            title: "🚧 Staging [pp-feel.netlify.app] ",
+            apiId: "9c7842fc-680c-4833-b23d-172bc751b449",
+            buildHookId: "62fb6081cde59600aabaeb3e",
+            name: "pp-feel",
           },
           {
             title: "💎 Production [] ",

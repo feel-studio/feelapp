@@ -25,11 +25,11 @@ const Interface = ({ children }) => {
         {children && <MediaTextDisplay>{children}</MediaTextDisplay>}
         <MediaPlayButton>
           {/* <svg slot="play">Play</svg>
-          <svg slot="pause">Pause</svg> */}
+			<svg slot="pause">Pause</svg> */}
         </MediaPlayButton>
         <MediaTimeRange></MediaTimeRange>
         {/* <MediaSeekBackwardButton></MediaSeekBackwardButton>
-            <MediaSeekForwardButton></MediaSeekForwardButton> */}
+			  <MediaSeekForwardButton></MediaSeekForwardButton> */}
         <MediaMuteButton></MediaMuteButton>
         {/* <MediaVolumeRange></MediaVolumeRange> */}
         <MediaFullscreenButton>
@@ -87,7 +87,7 @@ const Interface = ({ children }) => {
 
           --media-range-track-transition: height 0.2s ease;
           --media-range-track-background: rgba(255, 255, 255, 0.1);
-          --media-range-bar-color: rgb(255, 255, 255);
+          --media-range-bar-color: rgba(255, 255, 255, 1);
           --media-control-hover-background: none;
           --media-control-background: none;
 
@@ -111,6 +111,7 @@ const Interface = ({ children }) => {
         }
 
         media-control-bar {
+          display: flex;
           width: 100%;
           justify-content: center;
           align-items: center;
@@ -119,7 +120,6 @@ const Interface = ({ children }) => {
           position: relative;
           z-index: 99;
           color: white;
-
           z-index: 10;
         }
 
@@ -151,13 +151,7 @@ const Interface = ({ children }) => {
           );
           opacity: 0.5;
           z-index: -1;
-          border-radius: 1rem;
           pointer-events: none;
-        }
-
-        media-control-bar *:hover {
-          /* --media-button-icon-transform: scale(1.2);
-          --media-button-icon-transition: transform 0.2s ease; */
         }
 
         media-airplay-button[media-airplay-unavailable] {

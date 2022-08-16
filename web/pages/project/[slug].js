@@ -31,9 +31,13 @@ export const getStaticProps = async ({ params, preview = false }) => {
           queryParams: { slug: params?.slug || "" },
           preview,
         },
-        revalidate: 10,
       };
 };
 
 export const getStaticPaths = async () =>
-  getPaths("documentProject", "slug.current", "project");
+  getPaths(
+    "documentProject",
+    "slug.current",
+    "&& status != 'archive'",
+    "project"
+  );

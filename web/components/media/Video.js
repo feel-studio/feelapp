@@ -12,6 +12,7 @@ const Video = ({
   className,
   children,
   ratio: ratioCustom,
+  gif = false,
   controls: controlsForce = false,
 }) => {
   const controls = controlsForce || media?.controls,
@@ -54,7 +55,8 @@ const Video = ({
 
   if (!asset) return false;
 
-  const { data, playbackId, thumbTime = 0 } = asset;
+  const { data, playbackId, thumbTime = 0 } = asset,
+    { duration } = data;
 
   const [width, height] = data.aspect_ratio.split(":"),
     ratio = ratioCustom || parseInt(width) / parseInt(height);
@@ -80,16 +82,16 @@ const Video = ({
             ref={refPlayer}
             playsInline
             loop
-            autoPlay
+            autoPlay={gif || (!controls && duration < 15)}
           ></video>
 
           <MediaPosterImage
             slot="poster"
             src={`https://image.mux.com/${playbackId}/thumbnail.jpg?time=${thumbTime}`}
-            placeholder-src="data:image/jpeg;base64,/9j/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAASACADASIAAhEBAxEB/8QAGgABAAIDAQAAAAAAAAAAAAAAAAMEAgUGCP/EACkQAAEDAgMIAgMAAAAAAAAAAAEAAgMEBgUREgcUITFSkZTRQaEiscH/xAAYAQACAwAAAAAAAAAAAAAAAAAABQIDBv/EAB0RAAICAQUAAAAAAAAAAAAAAAABAgMFERUxwfD/2gAMAwEAAhEDEQA/AOZh2P2k/LOhq/Lf7VuPYvZxLQ6iqgXchvrxn9rpY7ojYCBU0IJ5HU3h9rU3NcGJVcVNJh2K4fDPTztlbm5reGRDhnxIzBPwkUc9RJ6dDHaLYojj2HWYeeH1nmSe1OzYXZJ54fW+ZJ7VeWrbO4SPuedpI/IOnB/TgsxJh4yIuGYu+TvAH9UXnafItWJmuTy1oZ0t7JoZ0t7Ii0InGhnS3smhnS3siIA//9k="
+            placeholder-src="https://image.mux.com/${playbackId}/thumbnail.jpg?time=${thumbTime}"
           />
 
-          <Interface />
+          {!gif && <Interface />}
         </MediaController>
         {children}
       </motion.div>

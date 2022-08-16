@@ -50,36 +50,30 @@ export default {
       type: "contentText",
     },
     {
+      title: "Thumbnail(s)",
+      name: "thumbnails",
+      type: "mediaCollection",
+    },
+    {
       title: "Content",
       name: "content",
       type: "mediaCollection",
+      options: {},
     },
   ],
   preview: {
     select: {
       title: "title",
       status: "status",
-      media0: "content.0",
-      media1: "content.1",
-      media2: "content.2",
-      media3: "content.3",
-      media4: "content.4",
-      media5: "content.5",
-      media6: "content.6",
-      media7: "content.7",
-      media8: "content.8",
-      media9: "content.9",
+      media: "thumbnails.0",
     },
-    prepare({ status, title, ...selection }) {
+    prepare({ status, title, media }) {
       const icon =
-          status === "visible" ? "" : status === "linkOnly" ? "🔗" : "💾",
-        mediaCollection = Object.values(selection);
+        status === "visible" ? "" : status === "linkOnly" ? "🔗" : "🪦";
 
       return {
         title: [icon, title].join(" "),
-        media: renderMedia(
-          mediaCollection.find((m) => m.status === "featured")
-        ),
+        media: renderMedia(media),
       };
     },
   },

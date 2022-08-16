@@ -45,10 +45,7 @@ export default function Route({ seo, title, className, children, info }) {
         <Footer info={info} />
       </motion.div>
 
-      <style jsx global>{`
-        .Route {
-        }
-      `}</style>
+      <style jsx global>{``}</style>
     </>
   );
 }

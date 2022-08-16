@@ -6,20 +6,24 @@ const Home = ({ projects }) => {
   return (
     <>
       <main className="Home">
-        {projects.map(({ title, _key, slug, content }) => {
-          return content
-            .filter(({ status }) => !!status)
-            .map((media) => (
-              <Link key={media?._key} href={"/project/" + slug?.current}>
-                <a>
-                  <Media media={media} />
-                </a>
-              </Link>
-            ));
+        {projects.map(({ slug, thumbnails }) => {
+          return thumbnails?.map((media) => (
+            <Link key={media?._key} href={"/project/" + slug?.current}>
+              <a>
+                <Media media={media} gif />
+              </a>
+            </Link>
+          ));
         })}
       </main>
 
       <style jsx global>{`
+        .RouteHome {
+          display: flex;
+          flex-direction: column;
+          min-height: 100vh;
+        }
+
         .Home {
           display: grid;
           grid-template-columns: repeat(
@@ -28,6 +32,14 @@ const Home = ({ projects }) => {
           );
           gap: 1rem;
           padding: 1rem;
+          flex-grow: 1;
+        }
+
+        @media (max-width: 653px) {
+          .Home {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+          }
         }
 
         .Home a {
@@ -36,6 +48,10 @@ const Home = ({ projects }) => {
           align-items: center;
           width: 100%;
           aspect-ratio: 1;
+        }
+
+        .Home .Media * {
+          pointer-events: none !important;
         }
 
         .Home .Media[data-orientation="portrait"] {

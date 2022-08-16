@@ -18,8 +18,8 @@ body {
   /* Defines Root Rem, use as Base Unit  */
   --vpMin: 375;
   --vpMax: 1920;
-  --min: 18;
-  --max: 18;
+  --min: 20;
+  --max: 20;
   --rem: calc(
     (var(--min) * 1px) + (var(--max) - var(--min)) *
       (100vw - (var(--vpMin) * 1px)) / (var(--vpMax) - var(--vpMin))

@@ -1,4 +1,4 @@
-import { renderGIF } from "../../utils";
+import { renderGIF, toPlainText } from "../../utils";
 
 export default {
   name: "media",
@@ -48,7 +48,6 @@ export default {
       type: "string",
       options: {
         list: [
-          { title: "Featured", value: "featured" },
           { title: "Visible", value: "visible" },
           { title: "Hidden", value: "hidden" },
         ],
@@ -87,11 +86,13 @@ export default {
       image: "image",
       mediaType: "mediaType",
       status: "status",
+      caption: "caption",
     },
-    prepare({ playbackId, image, status, mediaType }) {
-      const icon =
-        status === "visible" ? "👀" : status === "linkOnly" ? "🔗" : "💾";
+    prepare({ playbackId, image, status, mediaType, caption }) {
+      const icon = status === "visible" ? "👀" : "💾";
       return {
+        title: `${icon} ${status}`,
+        subtitle: toPlainText(caption),
         media: mediaType
           ? mediaType !== "image"
             ? renderGIF(playbackId)

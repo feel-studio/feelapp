@@ -2,11 +2,12 @@ import React from "react";
 import config from "../sanity.json";
 
 // Render Emoji
-export const renderEmoji = (emoji) => () => (
-  <span role="img" style={{ fontSize: "1.5rem" }}>
-    {emoji}
-  </span>
-);
+export const renderEmoji = (emoji) => () =>
+  (
+    <span role="img" style={{ fontSize: "1.5rem" }}>
+      {emoji}
+    </span>
+  );
 
 const { locales } = config.project;
 
@@ -77,3 +78,18 @@ export const replaceParallel = (search, replace, str) => {
 
   return ret;
 };
+
+export const toPlainText = (blocks = []) =>
+  blocks
+    ?.map((block) => {
+      // if it's not a text block with children,
+      // return nothing
+      if (block._type !== "blockText" || !block.children) {
+        return "";
+      }
+      // loop through the children spans, and join the
+      // text strings
+      return block.children.map((child) => child.text).join("");
+    })
+    // join the paragraphs leaving split by two linebreaks
+    .join("\n\n");

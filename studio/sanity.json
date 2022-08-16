@@ -6,7 +6,7 @@
   },
   "project": {
     "name": "FEEL",
-    "remoteUrl": "http://localhost:3000",
+    "remoteUrl": "https://pp-feel.netlify.app",
     "localUrl": "http://localhost:3000",
     "previewSecret": "X22RPMMCIYT8H85IVCNF",
     "locales": [

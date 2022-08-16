@@ -96,9 +96,9 @@ export const getAppProps = async (
   return promiseAllFromObject(res);
 };
 
-export const getPaths = async (_type, key, dir) => {
+export const getPaths = async (_type, key, condition, dir) => {
   const docs = await getClient(false).fetch(
-    groq`*[_type=="${_type}" && defined(${key})]{slug, i18n}`
+    groq`*[_type=="${_type}" && defined(${key})${condition}]{slug, i18n}`
   );
 
   const paths = docs?.map(({ slug, i18n }) => ({
