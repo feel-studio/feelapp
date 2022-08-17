@@ -1,4 +1,3 @@
-import { SSRProvider } from "react-aria";
 import { AnimatePresence } from "framer-motion";
 import { DefaultSeo } from "next-seo";
 import { useRouter } from "next/router";
