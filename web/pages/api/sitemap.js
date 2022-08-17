@@ -16,17 +16,17 @@ const Sitemap = async (req, res) => {
     url: "/",
   });
 
-  // Fetch data from a source which will be used to render the sitemap and all dynamic urls to the sitemap
-  // await getClient()
-  //   .fetch(`*[_type == "documentTEST" && !(_id in path("drafts.**"))]`, {})
-  //   .then((res) => {
-  //     res.forEach(({ slug, publishedAt }) => {
-  //       smStream.write({
-  //         url: `/TEST/${slug.current}`,
-  //         lastmod: publishedAt,
-  //       });
-  //     });
-  //   });
+  Fetch data from a source which will be used to render the sitemap and all dynamic urls to the sitemap
+  await getClient()
+    .fetch(`*[_type == "documentProject" && status != "archive" && !(_id in path("drafts.**"))]`, {})
+    .then((res) => {
+      res.forEach(({ slug, publishedAt }) => {
+        smStream.write({
+          url: `/project/${slug.current}`,
+          lastmod: publishedAt,
+        });
+      });
+    });
 
   // tell sitemap that there is nothing more to add to the sitemap
   smStream.end();
