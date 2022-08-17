@@ -7,6 +7,14 @@ import { MediaController, MediaPosterImage } from "media-chrome/dist/react";
 import { motion } from "framer-motion";
 import Interface from "./Interface";
 
+const isVideoPlaying = (video) =>
+  !!(
+    video.currentTime > 0 &&
+    !video.paused &&
+    !video.ended &&
+    video.readyState > 2
+  );
+
 const Video = ({
   media,
   className,
@@ -72,12 +80,20 @@ const Video = ({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
+        // onViewportEnter={() => {
+        //   const video = refPlayer.current;
+        //   !isVideoPlaying(video) && video?.play();
+        // }}
+        onViewportLeave={() => {
+          const video = refPlayer.current;
+          isVideoPlaying(video) && video?.pause();
+        }}
       >
         <MediaController autohide="2">
           <video
             slot="media"
             preload="auto"
-            muted
+            muted={gif || (!controls && duration < 15)}
             crossOrigin=""
             ref={refPlayer}
             playsInline
@@ -88,7 +104,7 @@ const Video = ({
           <MediaPosterImage
             slot="poster"
             src={`https://image.mux.com/${playbackId}/thumbnail.jpg?time=${thumbTime}`}
-            placeholder-src="https://image.mux.com/${playbackId}/thumbnail.jpg?time=${thumbTime}"
+            placeholder-src={`https://image.mux.com/${playbackId}/thumbnail.jpg?time=${thumbTime}`}
           />
 
           {!gif && <Interface />}

@@ -30,8 +30,7 @@ const Interface = ({ children }) => {
         <MediaTimeRange></MediaTimeRange>
         {/* <MediaSeekBackwardButton></MediaSeekBackwardButton>
 			  <MediaSeekForwardButton></MediaSeekForwardButton> */}
-        <MediaMuteButton></MediaMuteButton>
-        {/* <MediaVolumeRange></MediaVolumeRange> */}
+        <MediaMuteButton>Mute</MediaMuteButton>
         <MediaFullscreenButton>
           <svg aria-hidden="true" slot="enter" viewBox="0 0 28 28">
             <g transform="translate(2, 6)">
@@ -159,10 +158,6 @@ const Interface = ({ children }) => {
         }
 
         media-volume-range[media-volume-unavailable] {
-          display: none;
-        }
-
-        media-mute-button[media-volume-level="off"] {
           display: none;
         }
 
