@@ -1,12 +1,12 @@
-/* @font-face {
-  font-family: "NeueHelvetica";
-  src: url("/fonts/0666871b-2408-4418-9955-0435f2668a1a.woff2") format("woff2");
+@font-face {
+  font-family: "Helvetica Now";
+  src: url("/fonts/HelveticaNowDisplay-Medium.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
-} */
+}
 
 body {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Now", Helvetica, Arial, sans-serif;
   font-weight: normal;
   font-variant-ligatures: common-ligatures contextual;
   font-feature-settings: "kern", "liga", "clig", "calt";
