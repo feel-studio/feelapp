@@ -69,6 +69,8 @@ const Video = ({
   const [width, height] = data.aspect_ratio.split(":"),
     ratio = ratioCustom || parseInt(width) / parseInt(height);
 
+  const willAutoplay = gif || (!controls && duration < 15);
+
   return (
     <>
       <motion.div
@@ -80,10 +82,10 @@ const Video = ({
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        // onViewportEnter={() => {
-        //   const video = refPlayer.current;
-        //   !isVideoPlaying(video) && video?.play();
-        // }}
+        onViewportEnter={() => {
+          const video = refPlayer.current;
+          !isVideoPlaying(video) && willAutoplay && video?.play();
+        }}
         onViewportLeave={() => {
           const video = refPlayer.current;
           isVideoPlaying(video) && video?.pause();
@@ -93,12 +95,12 @@ const Video = ({
           <video
             slot="media"
             preload="auto"
-            muted={gif || (!controls && duration < 15)}
+            muted={willAutoplay}
             crossOrigin=""
             ref={refPlayer}
             playsInline
             loop
-            autoPlay={gif || (!controls && duration < 15)}
+            autoPlay={willAutoplay}
           ></video>
 
           <MediaPosterImage
