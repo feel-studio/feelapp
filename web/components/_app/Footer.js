@@ -1,44 +1,41 @@
-import useTranslation from "next-translate/useTranslation";
-import Link from "next/link";
+import { motion } from "framer-motion";
 import config from "@config";
-import Content from "../content/Content";
-import { Media } from "../media";
 import { Hyperlink } from "../parts/utils";
 
-const Footer = ({ info }) => {
+const Footer = ({ info, isIdle, section }) => {
   const { information, logo, links } = info || {};
   const { createdAt = "" } = config;
   return (
     <>
-      <footer className="Footer">
-        <section>
-          <figure className="logo">
-            <Link href="/">
-              <a>
-                <Media media={{ mediaType: "image", image: logo }} />
-              </a>
-            </Link>
-          </figure>
-          <div className="information">
-            <Content blocks={information} />
-            <br />
-            {links?.map((link, i) => (
-              <Hyperlink key={i} link={link} />
-            ))}
-          </div>
-        </section>
+      <motion.footer
+        className="Footer"
+        data-visible={section !== "center"}
+        initial={{ opacity: 1 }}
+        animate={{ opacity: section !== "center" ? 1 : 0 }}
+      >
+        <ul className="links">
+          {links?.map((link, i) => (
+            <li key={i}>
+              <Hyperlink link={link} />
+            </li>
+          ))}
+        </ul>
         <div className="legal">
           <span>{`© ${new Date().getFullYear()}`} Feel Enterprises LLC</span>
         </div>
-      </footer>
+      </motion.footer>
       <style jsx global>{`
         .Footer {
-          display: flex;
-          flex-direction: column;
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          width: 100%;
           padding: 1rem;
-          min-height: 50vh;
-          min-height: 50svh;
           text-transform: uppercase;
+        }
+
+        .Footer[data-visible="false"] {
+          pointer-events: none;
         }
 
         .RouteProject .Footer {
@@ -49,69 +46,27 @@ const Footer = ({ info }) => {
           padding: 50svh 1rem 1rem 1rem;
         }
 
-        .Footer section {
-          flex-grow: 1;
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          align-items: center;
-          width: 100%;
-          margin: 0 auto;
-          gap: 1rem;
-        }
-
-        @media (min-width: 428px) {
-          .Footer section {
-            grid-template-columns: repeat(
-              auto-fill,
-              minmax(calc(var(--wCol) + 2rem), 1fr)
-            );
-          }
-        }
-
         .Footer .legal {
-          display: flex;
+          display: inline-flex;
           justify-content: space-between;
         }
 
-        .Footer .information a {
-          border-bottom: 1px solid;
-          margin-bottom: -1px;
-        }
-
-        .Footer .logo {
-          width: 100%;
-          display: flex;
-          align-items: center;
+        .Footer .links {
+          display: inline-flex;
           justify-content: center;
+          gap: 1rem;
+          margin-right: 1rem;
         }
 
-        .Footer .Media {
-          --h: calc(var(--lH) * 3);
-          width: calc(var(--h) * var(--ratio));
-          height: var(--h);
-        }
-
-        .Footer :global(a) {
+        .Footer .links a {
+          margin-bottom: -1px;
+          border-bottom: 1px solid;
         }
 
         @media (max-width: 427px) {
           .Footer {
             justify-content: flex-end;
             gap: calc(var(--lH) * 5);
-          }
-
-          .Footer section {
-            flex-grow: unset;
-            display: block;
-          }
-
-          .Footer .logo {
-            margin-bottom: calc(var(--lH) * 5);
-          }
-        }
-
-        @media (hover: hover) {
-          .Footer :global(a:hover) {
           }
         }
       `}</style>

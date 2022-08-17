@@ -28,7 +28,6 @@ const Image = ({ media, className, ratio: ratioCustom, children }) => {
         200, 420, 840, 1060, 1280, 1500, 1720, 1940, 2160, 2380, 2600, 2820,
         3040,
       ],
-      srcBlur = getImgUrl(blur).width(1000).auto("format").url(),
       srcLQ = getImgUrl(asset).width(300).blur(100).auto("format").url(),
       srcset = sizes
         .map(
@@ -50,7 +49,7 @@ const Image = ({ media, className, ratio: ratioCustom, children }) => {
       srcLQ,
       fileType,
     };
-  }, [asset, alt, blur, ratioCustom]);
+  }, [asset, alt, ratioCustom]);
 
   const { ratio, orientation, id, height, width, srcset, srcLQ, fileType } =
     memoizedAsset || {};

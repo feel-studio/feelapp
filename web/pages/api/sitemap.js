@@ -16,9 +16,12 @@ const Sitemap = async (req, res) => {
     url: "/",
   });
 
-  Fetch data from a source which will be used to render the sitemap and all dynamic urls to the sitemap
+  //Fetch data from a source which will be used to render the sitemap and all dynamic urls to the sitemap
   await getClient()
-    .fetch(`*[_type == "documentProject" && status != "archive" && !(_id in path("drafts.**"))]`, {})
+    .fetch(
+      `*[_type == "documentProject" && status != "archive" && !(_id in path("drafts.**"))]`,
+      {}
+    )
     .then((res) => {
       res.forEach(({ slug, publishedAt }) => {
         smStream.write({

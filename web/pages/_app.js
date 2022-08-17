@@ -55,7 +55,7 @@ export function App({ Component, pageProps, settings, banners, jobs }) {
       {preview && <Preview />}
 
       <AnimatePresence
-        exitBeforeEnter
+        mode="wait"
         onExitComplete={() =>
           typeof window !== "undefined" && window.scrollTo({ top: 0 })
         }

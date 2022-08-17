@@ -131,6 +131,7 @@ table {
 #__next {
   isolation: isolate;
 }
+
 button {
   all: unset;
   display: revert;
