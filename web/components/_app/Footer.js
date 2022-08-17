@@ -32,6 +32,10 @@ const Footer = ({ info, isIdle, section }) => {
           width: 100%;
           padding: 1rem;
           text-transform: uppercase;
+          display: flex;
+          gap: calc(var(--lH) / 2) 1rem;
+          flex-wrap: wrap;
+          flex-direction: row;
         }
 
         .Footer[data-visible="false"] {
@@ -47,27 +51,20 @@ const Footer = ({ info, isIdle, section }) => {
         }
 
         .Footer .legal {
-          display: inline-flex;
+          display: flex;
           justify-content: space-between;
+          white-space: nowrap;
         }
 
         .Footer .links {
-          display: inline-flex;
+          display: flex;
           justify-content: center;
           gap: 1rem;
-          margin-right: 1rem;
         }
 
         .Footer .links a {
           margin-bottom: -1px;
           border-bottom: 1px solid;
-        }
-
-        @media (max-width: 427px) {
-          .Footer {
-            justify-content: flex-end;
-            gap: calc(var(--lH) * 5);
-          }
         }
       `}</style>
     </>
