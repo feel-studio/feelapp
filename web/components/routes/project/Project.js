@@ -30,7 +30,7 @@ const Project = ({ project }) => {
           }
         }
 
-        .ProjectMedia:not(:first-child) {
+        .ProjectMedia:not(:first-child):not(:nth-child(2)) {
           margin-top: calc(25vh - 2rem);
           margin-top: calc(25svh - 2rem);
         }
@@ -68,9 +68,6 @@ const Project = ({ project }) => {
           flex-direction: column;
           text-align: center;
           text-transform: uppercase;
-          scroll-snap-align: center;
-          margin-bottom: -50vh;
-          margin-bottom: -50svh;
         }
       `}</style>
     </>

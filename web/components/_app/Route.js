@@ -14,66 +14,22 @@ import { useRouter } from "next/router";
 export default function Route({ seo, title, className, children, info }) {
   const { index = true, follow = true, description, preview } = seo || {};
 
-  const [isIdle, setIdle] = useState(true),
-    [section, setSection] = useState("top"),
+  const [section, setSection] = useState("top"),
     [canScroll, setCanScroll] = useState(false);
-
-  const { windowW, windowH } = useWindowSize();
 
   const { pathname } = useRouter();
 
-  const ref = useRef();
-
-  const { scrollYProgress } = useScroll({
-    container: pathname === "/" ? undefined : ref,
-  });
+  const { windowW, windowH } = useWindowSize();
 
   useEffect(() => {
-    setCanScroll(document.body.clientHeight > window.innerHeight);
-  }, [canScroll, windowW, windowH]);
-
-  useEffect(() => {
-    return scrollYProgress.onChange((latest) => {
-      setSection(latest > 0.1 ? (latest < 0.9 ? "center" : "bottom") : "top");
-    });
-  }, [pathname]);
-
-  const onIdle = () => {
-    setIdle(true);
-    // Close Modal Prompt
-    // Do some idle action like log out your user
-  };
-
-  const onActive = (event) => {
-    setIdle(false);
-    // Close Modal Prompt
-    // Do some active action
-  };
-
-  const idleTimer = useIdleTimer({
-    onIdle,
-    onActive,
-    timeout: 1000,
-    events: [
-      "keydown",
-      "wheel",
-      "DOMMouseScroll",
-      "mousewheel",
-      "mousedown",
-      "touchstart",
-      "touchmove",
-      "MSPointerDown",
-    ],
-  });
+    setCanScroll(
+      pathname !== "/" || document.body.clientHeight > window.innerHeight
+    );
+  }, [canScroll, windowW, windowH, pathname]);
 
   return (
     <>
-      <Header
-        info={info}
-        isIdle={isIdle}
-        section={section}
-        canScroll={canScroll}
-      />
+      <Header info={info} section={section} canScroll={canScroll} />
 
       <NextSeo
         title={title}
@@ -103,16 +59,40 @@ export default function Route({ seo, title, className, children, info }) {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.3 }}
         style={{ background: "white" }}
-        ref={ref}
+        key={className}
       >
+        <motion.div
+          className="sentinel"
+          onViewportEnter={() => setSection("top")}
+          onViewportLeave={() => setSection("center")}
+        ></motion.div>
         {children}
+        <motion.div
+          className="sentinel"
+          onViewportEnter={() => setSection("bottom")}
+          onViewportLeave={() => setSection("center")}
+        ></motion.div>
       </motion.div>
 
-      <Footer info={info} isIdle={isIdle} section={section} />
+      <Footer info={info} section={section} />
 
       <style jsx global>{`
         .Route {
           flex-grow: 1;
+        }
+
+        .Route .sentinel {
+          width: 100%;
+          height: 1rem;
+          pointer-events: none;
+        }
+
+        .sentinel:first-child {
+          margin-bottom: -1rem;
+        }
+
+        .sentinel:last-child {
+          margin-top: -1rem;
         }
       `}</style>
     </>
