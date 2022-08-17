@@ -52,14 +52,20 @@ const Footer = ({ info }) => {
         .Footer section {
           flex-grow: 1;
           display: grid;
-          grid-template-columns: repeat(
-            auto-fill,
-            minmax(calc(264px + 2rem), 1fr)
-          );
+          grid-template-columns: repeat(2, 1fr);
           align-items: center;
           width: 100%;
           margin: 0 auto;
           gap: 1rem;
+        }
+
+        @media (min-width: 428px) {
+          .Footer section {
+            grid-template-columns: repeat(
+              auto-fill,
+              minmax(calc(var(--wCol) + 2rem), 1fr)
+            );
+          }
         }
 
         .Footer .legal {
@@ -88,7 +94,7 @@ const Footer = ({ info }) => {
         .Footer :global(a) {
         }
 
-        @media (max-width: 667px) {
+        @media (max-width: 427px) {
           .Footer {
             justify-content: flex-end;
             gap: calc(var(--lH) * 5);

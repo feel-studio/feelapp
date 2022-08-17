@@ -1,9 +1,3 @@
 :root {
-  /* color palette */
-  --white: hsl(0, 0%, 100%);
-  --black: #000;
-
-  --distA: 2rem;
-  --distB: 3rem;
-  --distC: max((100vmin * 2 / 3), 12rem);
+  --wCol: 144px;
 }

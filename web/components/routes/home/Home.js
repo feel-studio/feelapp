@@ -27,19 +27,18 @@ const Home = ({ projects }) => {
 
         .Home {
           display: grid;
-          grid-template-columns: repeat(
-            auto-fill,
-            minmax(calc(264px + 2rem), 1fr)
-          );
+          grid-template-columns: repeat(2, 1fr);
           gap: 1rem;
           padding: 1rem;
           flex-grow: 1;
         }
 
-        @media (max-width: 653px) {
+        @media (min-width: 428px) {
           .Home {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: repeat(
+              auto-fill,
+              minmax(calc(var(--wCol) + 2rem), 1fr)
+            );
           }
         }
 
