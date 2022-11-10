@@ -66,14 +66,20 @@ export default {
       title: "title",
       status: "status",
       media: "thumbnails.0",
+      mediaVideoPlaybackId: "thumbnails.0.video.asset.playbackId",
     },
-    prepare({ status, title, media }) {
+    prepare({ status, title, media, mediaVideoPlaybackId }) {
       const icon =
         status === "visible" ? "" : status === "linkOnly" ? "🔗" : "🪦";
 
       return {
         title: [icon, title].join(" "),
-        media: renderMedia(media),
+        media:
+          media &&
+          renderMedia({
+            ...media,
+            video: { mediaVideoPlaybackId },
+          }),
       };
     },
   },

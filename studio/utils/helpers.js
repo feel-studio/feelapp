@@ -20,6 +20,8 @@ export const renderMedia = (media) => {
   const { mediaType, image, video } = media || {};
   if (!image && !video) return undefined;
 
+  if (mediaType === "video") console.log({ media });
+
   return mediaType === "image" ? (
     image
   ) : (

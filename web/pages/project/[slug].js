@@ -19,7 +19,7 @@ export default function RouteProject({ data, queryParams, preview }) {
   );
 }
 
-export const getStaticProps = async ({ params, preview = false }) => {
+export const getServerSideProps = async ({ params, preview = false }) => {
   const queryParams = { slug: params?.slug || "" };
   const data = await getProps(queries, queryParams, preview);
 
@@ -34,10 +34,10 @@ export const getStaticProps = async ({ params, preview = false }) => {
       };
 };
 
-export const getStaticPaths = async () =>
-  getPaths(
-    "documentProject",
-    "slug.current",
-    "&& status != 'archive'",
-    "project"
-  );
+// export const getStaticPaths = async () =>
+//   getPaths(
+//     "documentProject",
+//     "slug.current",
+//     "&& status != 'archive'",
+//     "project"
+//   );

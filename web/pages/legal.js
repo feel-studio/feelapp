@@ -15,7 +15,11 @@ export default function RouteLegal({ data, queryParams, preview }) {
   );
 }
 
-export const getStaticProps = async ({ params, preview = false, locale }) => {
+export const getServerSideProps = async ({
+  params,
+  preview = false,
+  locale,
+}) => {
   const queryParams = { locale, slug: params?.slug || "" };
 
   return {
